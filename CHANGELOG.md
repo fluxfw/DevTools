@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.0]
+- Generate readme
+
 ## [1.1.1]
 - Move LibraryLanguageInstaller to separate package
 
