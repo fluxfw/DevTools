@@ -40,7 +40,10 @@
   "autoload": {
     "psr-4": {
       "srag\\DevTools\\": "src/"
-    }
+    },
+    "classmap": [
+      "src/class.DevToolsCtrl.php"
+    ]
   },
   "config": {
     "classmap-authoritative": true,
