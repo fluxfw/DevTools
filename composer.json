@@ -11,10 +11,10 @@
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "Dev",
-    "Plugin",
-    "Tools"
+    "dev",
+    "ilias",
+    "plugin",
+    "tools"
   ],
   "homepage": "https://github.com/studer-raimann/DevTools",
   "license": "GPL-3.0-only",
