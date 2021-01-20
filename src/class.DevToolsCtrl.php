@@ -154,7 +154,12 @@ class DevToolsCtrl
         ilUtil::sendSuccess($this->plugin->translate("reloaded_ctrl_structure", self::LANG_MODULE), true);
 
         //self::dic()->ctrl()->redirect($this);
-        self::dic()->ctrl()->redirectToURL(self::dic()->ctrl()->getTargetScript() . "?ref_id=" . (31) . "&admin_mode=settings&ctype=" . $this->plugin->getPluginObject()->getComponentType()
+        self::dic()->ctrl()->redirectToURL(self::dic()->ctrl()->getTargetScript() . "?ref_id=" . self::dic()
+                                                                                                     ->database()
+                                                                                                     ->queryF('SELECT ref_id FROM object_data INNER JOIN object_reference ON object_data.obj_id=object_reference.obj_id WHERE type=%s',
+                                                                                                         [ilDBConstants::T_TEXT], ["cmps"])
+                                                                                                     ->fetchAssoc()["ref_id"] . "&admin_mode=settings&ctype=" . $this->plugin->getPluginObject()
+                ->getComponentType()
             . "&cname=" . $this->plugin->getPluginObject()->getComponentName()
             . "&slot_id=" . $this->plugin->getPluginObject()->getSlotId() . "&pname=" . $this->plugin->getPluginObject()->getPluginName() . "&cmdClass="
             . static::class . "&cmdNode=" . implode(":", array_map([$this, "reloadCtrlStructureGetNewNodeId"], [
