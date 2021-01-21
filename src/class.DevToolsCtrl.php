@@ -2,9 +2,11 @@
 
 namespace srag\DevTools;
 
+use Closure;
 use ilAdministrationGUI;
 use ilDBConstants;
 use ilObjComponentSettingsGUI;
+use ilPlugin;
 use ilPluginConfigGUI;
 use ilUtil;
 use srag\DIC\DICTrait;
@@ -178,7 +180,9 @@ class DevToolsCtrl
     {
         $this->plugin->reloadDatabase();
 
-        ilUtil::sendSuccess($this->plugin->translate("reloaded_database", self::LANG_MODULE) . "<br><br>" . $this->plugin->getPluginObject()->message, true);
+        ilUtil::sendSuccess($this->plugin->translate("reloaded_database", self::LANG_MODULE) . "<br><br>" . Closure::bind(function () : string {
+                return $this->message;
+            }, $this->plugin->getPluginObject(), ilPlugin::class)(), true);
 
         self::dic()->ctrl()->redirect($this);
     }
